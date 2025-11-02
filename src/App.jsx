@@ -1,6 +1,7 @@
 import Hero from './components/Hero';
-import Projects from './components/Projects';
 import About from './components/About';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
 import Contact from './components/Contact';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           </a>
           <nav className="hidden gap-6 md:flex text-sm text-white/70">
             <a href="#about" className="hover:text-white">About</a>
+            <a href="#skills" className="hover:text-white">Skills</a>
             <a href="#projects" className="hover:text-white">Projects</a>
             <a href="#contact" className="hover:text-white">Contact</a>
           </nav>
@@ -22,11 +24,12 @@ function App() {
 
       <Hero />
       <About />
+      <Skills />
       <Projects />
       <Contact />
 
       <footer className="border-t border-white/10 bg-slate-950 py-8 text-center text-white/60">
-        <p>© {new Date().getFullYear()} Ukiyo Dev — Crafted with care and motion.</p>
+        <p>© {new Date().getFullYear()} Ukiyo Dev — Crafted with harmony and motion.</p>
       </footer>
     </main>
   );

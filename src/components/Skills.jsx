@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Code, Rocket, Cpu, Paintbrush } from 'lucide-react';
+import { Code, Rocket, Cpu, Paintbrush, Workflow } from 'lucide-react';
 
 const skills = [
   { icon: Code, label: 'Frontend Architecture' },
@@ -10,9 +10,13 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section className="relative bg-slate-950 py-20 text-white">
+    <section id="skills" className="relative bg-slate-950 py-20 text-white">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="text-3xl font-semibold md:text-4xl">What I Do</h2>
+        <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70 backdrop-blur">
+          <Workflow className="h-3.5 w-3.5 text-sky-300" />
+          What I Do
+        </div>
+        <h2 className="text-3xl font-semibold md:text-4xl">Capabilities</h2>
         <p className="mt-2 max-w-xl text-white/60">
           Bridging artful aesthetics with engineering discipline to build robust, delightful interfaces.
         </p>
@@ -34,6 +38,8 @@ export default function Skills() {
           ))}
         </div>
       </div>
+
+      <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:radial-gradient(rgba(255,255,255,0.35)_1px,transparent_1px)] [background-size:12px_12px]" />
     </section>
   );
 }

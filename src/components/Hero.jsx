@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 const RisingSun = () => (
   <div className="absolute inset-0 overflow-hidden">
@@ -9,25 +9,84 @@ const RisingSun = () => (
   </div>
 );
 
-const Wave = () => (
-  <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
-    <motion.path
-      d="M0,160 C240,120 360,200 540,180 C720,160 900,80 1080,120 C1260,160 1440,120 1440,120 L1440,200 L0,200 Z"
-      fill="url(#waveGrad)"
-      initial={{ d: "M0,160 C240,160 360,160 540,160 C720,160 900,160 1080,160 C1260,160 1440,160 1440,160 L1440,200 L0,200 Z" }}
-      animate={{ d: [
-        "M0,160 C240,120 360,200 540,180 C720,160 900,80 1080,120 C1260,160 1440,120 1440,120 L1440,200 L0,200 Z",
-        "M0,160 C240,140 360,120 540,140 C720,160 900,200 1080,180 C1260,160 1440,140 1440,140 L1440,200 L0,200 Z",
-        "M0,160 C240,120 360,200 540,180 C720,160 900,80 1080,120 C1260,160 1440,120 1440,120 L1440,200 L0,200 Z",
-      ]}}
-      transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-    />
+const Waves = () => (
+  <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
     <defs>
-      <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.25" />
-        <stop offset="100%" stopColor="#0369a1" stopOpacity="0.35" />
+      <linearGradient id="waveGrad1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.25" />
+        <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0.35" />
+      </linearGradient>
+      <linearGradient id="waveGrad2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#7dd3fc" stopOpacity="0.18" />
+        <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.25" />
       </linearGradient>
     </defs>
+
+    <motion.path
+      d="M0,200 C240,160 360,240 540,220 C720,200 900,120 1080,160 C1260,200 1440,160 1440,160 L1440,260 L0,260 Z"
+      fill="url(#waveGrad1)"
+      initial={{ d: 'M0,220 C240,220 360,220 540,220 C720,220 900,220 1080,220 C1260,220 1440,220 1440,220 L1440,260 L0,260 Z' }}
+      animate={{ d: [
+        'M0,200 C240,160 360,240 540,220 C720,200 900,120 1080,160 C1260,200 1440,160 1440,160 L1440,260 L0,260 Z',
+        'M0,210 C240,190 360,170 540,190 C720,210 900,250 1080,230 C1260,210 1440,190 1440,190 L1440,260 L0,260 Z',
+        'M0,200 C240,160 360,240 540,220 C720,200 900,120 1080,160 C1260,200 1440,160 1440,160 L1440,260 L0,260 Z',
+      ]}}
+      transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+    />
+
+    <motion.path
+      d="M0,220 C200,200 380,240 560,230 C740,220 920,180 1100,200 C1280,220 1440,200 1440,200 L1440,260 L0,260 Z"
+      fill="url(#waveGrad2)"
+      initial={{ opacity: 0.8 }}
+      animate={{ opacity: [0.6, 0.9, 0.6] }}
+      transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+    />
+  </svg>
+);
+
+// Sakura petals falling
+const Sakura = () => {
+  const petals = Array.from({ length: 14 });
+  return (
+    <div className="pointer-events-none absolute inset-0">
+      {petals.map((_, i) => (
+        <motion.span
+          key={i}
+          className="absolute h-2 w-3 origin-center rounded-[2px] bg-rose-300/70"
+          style={{ left: `${Math.random() * 100}%` }}
+          initial={{ y: -40, rotate: 0, opacity: 0 }}
+          animate={{
+            y: ['-10%', '110%'],
+            x: [0, Math.random() * 60 - 30],
+            rotate: [0, 180, 360],
+            opacity: [0, 1, 0],
+          }}
+          transition={{ duration: 10 + Math.random() * 8, repeat: Infinity, delay: Math.random() * 6, ease: 'easeInOut' }}
+        />
+      ))}
+    </div>
+  );
+};
+
+// Seaweed sway at the seabed
+const Seaweed = () => (
+  <svg className="pointer-events-none absolute bottom-0 left-0 w-full opacity-40" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden>
+    {[...Array(10)].map((_, i) => (
+      <motion.path
+        key={i}
+        d={`M${80 + i * 130},120 C${60 + i * 130},80 ${100 + i * 130},40 ${80 + i * 130},0`}
+        stroke="#86efac"
+        strokeWidth="3"
+        strokeLinecap="round"
+        fill="transparent"
+        animate={{ d: [
+          `M${80 + i * 130},120 C${60 + i * 130},80 ${100 + i * 130},40 ${80 + i * 130},0`,
+          `M${80 + i * 130},120 C${70 + i * 130},85 ${90 + i * 130},35 ${80 + i * 130},0`,
+          `M${80 + i * 130},120 C${60 + i * 130},80 ${100 + i * 130},40 ${80 + i * 130},0`,
+        ]}}
+        transition={{ duration: 5 + (i % 3), repeat: Infinity, ease: 'easeInOut' }}
+      />
+    ))}
   </svg>
 );
 
@@ -35,16 +94,17 @@ export default function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-slate-950 text-white">
       <RisingSun />
+      <Sakura />
 
-      <div className="mx-auto flex min-h-[90vh] max-w-6xl flex-col items-center justify-center gap-8 px-6 pt-24 text-center">
+      <div className="mx-auto flex min-h-[95vh] max-w-6xl flex-col items-center justify-center gap-8 px-6 pt-24 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs tracking-wide text-white/80 backdrop-blur"
         >
-          <span className="h-2 w-2 rounded-full bg-rose-400" />
-          Crafted with a touch of Japanese aesthetics
+          <Sparkles className="h-3.5 w-3.5 text-amber-300" />
+          A portfolio with Japanese-inspired motion and texture
         </motion.div>
 
         <motion.h1
@@ -62,7 +122,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="max-w-2xl text-balance text-white/70"
         >
-          A portfolio inspired by ukiyo‑e and ocean waves — blending minimalism, motion, and code to create immersive user interfaces.
+          Inspired by ukiyo‑e waves, sakura petals, and gentle ocean sway — blending minimalism, motion, and modern engineering.
         </motion.p>
 
         <motion.div
@@ -81,7 +141,8 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <Wave />
+      <Seaweed />
+      <Waves />
 
       <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:radial-gradient(rgba(255,255,255,0.35)_1px,transparent_1px)] [background-size:12px_12px]" />
     </section>
